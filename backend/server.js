@@ -1,7 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-const path = require('path');
+const userRoutesPath = require('./routes/UserRoutes');
+const storyRoutesPath = require('./routes/StoryRoutes');
 require('dotenv').config();
 
 const app = express();
@@ -18,8 +19,8 @@ mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTop
   .catch(err => console.error('Error connecting to MongoDB:', err));
 
 // Define routes
-app.use('/users', require(path.join(__dirname, 'routes', 'userRoutes')));
-app.use('/stories', require(path.join(__dirname, 'routes', 'storyRoutes')));
+app.use('/users', userRoutesPath);
+app.use('/stories', storyRoutesPath);
 // Add more routes as needed
 
 // Start server
